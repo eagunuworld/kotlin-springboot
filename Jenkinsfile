@@ -37,15 +37,6 @@ pipeline {
                 }
             }
         }
-        stage('Kubernetes Deploy') {
-            when {
-                environment name: 'DEPLOY', value: 'true'
-            }
-            steps {
-                container('helm') {
-                    sh "helm upgrade --install --force --set name=${NAME} --set image.tag=${VERSION} --set domain=${DOMAIN} ${NAME} ./helm"
-                }
-            }
-        }
+        
     }
 }
